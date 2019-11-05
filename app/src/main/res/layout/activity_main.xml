@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.yusufpats.backdrop.BackdropLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.yusufpats.backdroplayout.BackdropLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/backdrop_layout"
@@ -41,4 +41,4 @@
         app:cardBackgroundColor="@color/background"
         app:cardCornerRadius="16dp"
         app:cardElevation="16dp" />
-</com.yusufpats.backdrop.BackdropLayout>
+</com.yusufpats.backdroplayout.BackdropLayout>

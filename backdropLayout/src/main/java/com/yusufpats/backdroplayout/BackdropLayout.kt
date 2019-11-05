@@ -1,4 +1,4 @@
-package com.yusufpats.backdrop
+package com.yusufpats.backdroplayout
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -88,7 +88,9 @@ class BackdropLayout @JvmOverloads constructor(
         attrs?.let {
             val typedArray = context.obtainStyledAttributes(it, R.styleable.BackdropLayout, 0, 0)
             duration =
-                typedArray.getInt(R.styleable.BackdropLayout_duration, DEFAULT_ANIMATION_DURATION)
+                typedArray.getInt(R.styleable.BackdropLayout_duration,
+                    DEFAULT_ANIMATION_DURATION
+                )
             typedArray.recycle()
         }
 
