@@ -28,7 +28,7 @@ class BackdropLayout @JvmOverloads constructor(
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
     companion object {
-        const val DEFAULT_ANIMATION_DURATION = 300
+        const val DEFAULT_ANIMATION_DURATION = 500
         const val DEFAULT_PEAK_HEIGHT = 200
     }
 
