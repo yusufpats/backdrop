@@ -26,11 +26,15 @@ class BackdropLayout @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
+    companion object {
+        const val DEFAULT_ANIMATION_DURATION = 300
+        const val DEFAULT_PEAK_HEIGHT = 200
+    }
 
     val interpolator: Interpolator? = null
-    var duration: Int = 300
+    var duration: Int = DEFAULT_ANIMATION_DURATION
     var frontSheet: View? = null
-    var peakHeight: Int = 200
+    var peakHeight: Int = DEFAULT_PEAK_HEIGHT
     var revealHeight: Int = 0
     private var triggerView: ImageView? = null
     private var openIcon: Drawable? = null
@@ -41,6 +45,13 @@ class BackdropLayout @JvmOverloads constructor(
     private val displayHeight: Int
 
     init {
+        attrs?.let {
+            val typedArray = context.obtainStyledAttributes(it, R.styleable.BackdropLayout, 0, 0)
+            duration =
+                typedArray.getInt(R.styleable.BackdropLayout_duration, DEFAULT_ANIMATION_DURATION)
+            typedArray.recycle()
+        }
+
         val displayMetrics = DisplayMetrics()
         (context as Activity).windowManager.defaultDisplay.getMetrics(displayMetrics)
         displayHeight = displayMetrics.heightPixels
@@ -82,6 +93,18 @@ class BackdropLayout @JvmOverloads constructor(
         }
         animatorSet.play(animator)
         animator.start()
+    }
+
+    fun showBackdrop() {
+        if (!backdropShown) {
+            toggleBackdrop(true)
+        }
+    }
+
+    fun hideBackdrop() {
+        if (backdropShown) {
+            toggleBackdrop(false)
+        }
     }
 
     fun setTriggerView(triggerView: ImageView, openIcon: Drawable, closeIcon: Drawable) {
