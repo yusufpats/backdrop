@@ -5,13 +5,14 @@ import android.animation.ObjectAnimator
 import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
 import android.view.animation.Interpolator
 import android.widget.FrameLayout
-import androidx.core.animation.doOnEnd
+import android.widget.ImageView
 
 
 /**
@@ -31,6 +32,9 @@ class BackdropLayout @JvmOverloads constructor(
     var frontSheet: View? = null
     var peakHeight: Int = 200
     var revealHeight: Int = 0
+    private var triggerView: ImageView? = null
+    private var openIcon: Drawable? = null
+    private var closeIcon: Drawable? = null
 
     private val animatorSet = AnimatorSet()
     private var backdropShown = false
@@ -58,19 +62,42 @@ class BackdropLayout @JvmOverloads constructor(
         animatorSet.end()
         animatorSet.cancel()
 
+        //Update the trigger view if set
+        triggerView?.let { updateTriggerView(it) }
+
         val translateY: Int = if (revealHeight > 0) {
             convertDpToPixel(revealHeight)
         } else {
             height - convertDpToPixel(peakHeight)
         }
 
-        val animator = ObjectAnimator.ofFloat(frontSheet!!, "translationY", (if (showBackdrop) translateY else 0).toFloat())
+        val animator = ObjectAnimator.ofFloat(
+            frontSheet!!,
+            "translationY",
+            (if (showBackdrop) translateY else 0).toFloat()
+        )
         animator.duration = duration.toLong()
         if (interpolator != null) {
             animator.interpolator = interpolator
         }
         animatorSet.play(animator)
         animator.start()
+    }
+
+    fun setTriggerView(triggerView: ImageView, openIcon: Drawable, closeIcon: Drawable) {
+        this.triggerView = triggerView
+        this.openIcon = openIcon
+        this.closeIcon = closeIcon
+
+        this.triggerView!!.setOnClickListener { toggleBackdrop() }
+    }
+
+    private fun updateTriggerView(triggerView: ImageView) {
+        if (openIcon == null || closeIcon == null) {
+            Log.e("BackdropLayout", "trigger view icons not set")
+            return
+        }
+        triggerView.setImageDrawable(if (backdropShown) closeIcon else openIcon)
     }
 
     private fun convertDpToPixel(dp: Int): Int {
