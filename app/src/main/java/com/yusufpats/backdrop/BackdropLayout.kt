@@ -13,6 +13,7 @@ import android.view.View
 import android.view.animation.Interpolator
 import android.widget.FrameLayout
 import android.widget.ImageView
+import androidx.core.animation.doOnEnd
 
 
 /**
@@ -39,6 +40,7 @@ class BackdropLayout @JvmOverloads constructor(
     private var triggerView: ImageView? = null
     private var openIcon: Drawable? = null
     private var closeIcon: Drawable? = null
+    var stateChangeListener: OnStateChangeListener? = null
 
     private val animatorSet = AnimatorSet()
     private var backdropShown = false
@@ -92,6 +94,10 @@ class BackdropLayout @JvmOverloads constructor(
             animator.interpolator = interpolator
         }
         animatorSet.play(animator)
+        stateChangeListener?.let {
+            animator.doOnEnd { stateChangeListener?.onBackdropStateChanged(showBackdrop) }
+        }
+
         animator.start()
     }
 
@@ -125,6 +131,10 @@ class BackdropLayout @JvmOverloads constructor(
 
     private fun convertDpToPixel(dp: Int): Int {
         return (dp * Resources.getSystem().displayMetrics.density).toInt()
+    }
+
+    interface OnStateChangeListener {
+        fun onBackdropStateChanged(isRevealed: Boolean)
     }
 
 }
