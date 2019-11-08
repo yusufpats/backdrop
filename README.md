@@ -3,6 +3,7 @@
 <!--[![Version](https://img.shields.io/badge/Version-1.0.0-brightgreen.svg?style=flat)](https://github.com/yusufpats/backdrop)-->
 [ ![Download](https://api.bintray.com/packages/yusufpats/BackdropLayout/backdropLayout/images/download.svg) ](https://bintray.com/yusufpats/BackdropLayout/backdropLayout/_latestVersion)
 [![License Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue)](https://opensource.org/licenses/Apache-2.0)
+[![Android min SDK](https://img.shields.io/badge/Android%20Min%20SDK-14-brightgreen)](https://bintray.com/yusufpats/BackdropLayout/backdropLayout/_latestVersion)
 <!--[![HitCount](http://hits.dwyl.io/yusufpats/yusufpats/backdrop.svg)](http://hits.dwyl.io/yusufpats/yusufpats/backdrop)-->
 
 An easy to implement Layout based on the Backdrop component from Material Design
@@ -74,7 +75,7 @@ triggerView.setOnClickListener {
 ### Aditional customizations (Kotlin)
 | Function | Description                    |
 | ------------- | ------------------------------ |
-| `frontSheet` | Set the front sheet of the        |
+| `frontSheet` | **(Required)** set the front layer of the BackdropLayout     |
 | `duration` | duration of toggle animation     |
 | `revealHeight` | height of the `frontSheet` that should be visible when backdrop is open     |
 | `peakHeight` | height of the `BackLayer` that should be visible when backdrop is open     |
@@ -85,11 +86,12 @@ triggerView.setOnClickListener {
 ```kotlin
 // `openIcon` - Icon to be used for the trigger view when backdrop is not open
 // `closeIcon` - Icon to be used for the trigger view when backdrop is open
+
 fun setTriggerView(triggerView: ImageView, openIcon: Drawable, closeIcon: Drawable);
 ```
 
 
-## Author
+## Author    ![GitHub followers](https://img.shields.io/github/followers/yusufpats?label=Follow&logo=github&style=social)
 Yusuf I Patrawala <br>
 Github - @yusufpats
 
