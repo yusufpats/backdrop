@@ -91,8 +91,8 @@ fun setTriggerView(triggerView: ImageView, openIcon: Drawable, closeIcon: Drawab
 ```
 
 
-## Author    ![GitHub followers](https://img.shields.io/github/followers/yusufpats?label=Follow&logo=github&style=social)
-Yusuf I Patrawala <br>
+## Author  &nbsp;  ![GitHub followers](https://img.shields.io/github/followers/yusufpats?label=Follow&logo=github&style=social)
+Yusuf I Patrawala (yusufpats@gmail.com)<br>
 Github - @yusufpats
 
 ## License
