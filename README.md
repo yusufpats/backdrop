@@ -11,7 +11,7 @@ An easy to implement Layout based on the Backdrop component from Material Design
 ## Setup
 Add this dependency to your app `build.gradle`:
 ```bash
-compile 'com.yusufpats.backdroplayout:backdropLayout:<latest-version>'
+implementation 'com.yusufpats.backdroplayout:backdropLayout:<latest-version>'
 ```
 
 ## How to use?
